@@ -3,8 +3,7 @@ FROM eclipse-temurin:17
 WORKDIR /app
 
 COPY .mvn/ .mvn
-COPY mvnw  mvnw
-COPY pom.xml pom.xml
+COPY mvnw pom.xml ./
 
 RUN ./mvnw dependency:go-offline
 
