@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  user-service:
+    build:
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - $USER_SERVICE_PORT:$USER_SERVICE_PORT
+    env_file:
+      - .env
+      - ../.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - database
+
+  database:
+    image: mysql
+    hostname: $DB_HOSTNAME 
+    volumes:
+      - anyday-user:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: user 
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+
+volumes:
+  anyday-user:
