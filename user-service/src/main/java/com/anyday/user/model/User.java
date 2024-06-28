@@ -6,15 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Date;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
-@Table
+@Table(name = "USER_TABLE")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
   @Id
   @UuidGenerator
