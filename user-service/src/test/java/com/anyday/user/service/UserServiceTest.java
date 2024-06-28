@@ -18,7 +18,7 @@ public class UserServiceTest {
     String uid = "does_not_exist";
     try {
       this.userService.getUser(uid);
-      fail("User does not exist, but assertion is not raised");
+      fail("User does not exist, but exception is not raised");
     } catch (UserNotFoundException e) {
       return;
     }

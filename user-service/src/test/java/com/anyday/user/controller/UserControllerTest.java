@@ -42,7 +42,19 @@ public class UserControllerTest {
     String url = "/user/" + uid;
 
     String email = "test@test.com";
-    User user = User.builder().uid(uid).email(email).build();
+    String juid = "test_juid";
+    String firstName = "test_firstName";
+    String lastName = "test_lastName";
+
+    User user =
+        User.builder()
+            .uid(uid)
+            .juid(juid)
+            .email(email)
+            .firstName(firstName)
+            .lastName(lastName)
+            .build();
+
     when(this.userService.getUser(uid)).thenReturn(user);
 
     this.mockMvc
@@ -50,6 +62,9 @@ public class UserControllerTest {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.success").value(true))
         .andExpect(jsonPath("$.data.uid").value(uid))
-        .andExpect(jsonPath("$.data.email").value(email));
+        .andExpect(jsonPath("$.data.juid").value(juid))
+        .andExpect(jsonPath("$.data.email").value(email))
+        .andExpect(jsonPath("$.data.firstName").value(firstName))
+        .andExpect(jsonPath("$.data.lastName").value(lastName));
   }
 }
