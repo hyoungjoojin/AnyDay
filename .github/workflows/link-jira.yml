@@ -21,6 +21,7 @@ jobs:
           ISSUE_NUMBER=$(echo $BRANCH_NAME | grep -oP 'ANYDAY-\K\d+')
           CURRENT_BODY=$(gh pr view $PR_NUMBER --json body -q .body)
           JIRA_LINK=$(echo -e "- [Jira](https://hyoungjoojin.atlassian.net/browse/ANYDAY-$ISSUE_NUMBER)")
-          gh pr edit $PR_NUMBER --body $(echo -e "${CURRENT_BODY}\n\n${JIRA_LINK}\n\n")
+          NEW_BODY=$(echo -e "${CURRENT_BODY}\n\n${JIRA_LINK}\n\n")
+          gh pr edit $PR_NUMBER --body $NEW_BODY
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
